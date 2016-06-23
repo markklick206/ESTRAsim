@@ -24,7 +24,7 @@ def RADdigest(sequence_file):
     multi = (BamHI, EcoRI, PstI)
     
     #open file
-    output = open('test_fragments.fasta', "wt")
+    output = open('test_fragments_assmbl.fasta', "wt")
     
     for record in SeqIO.parse(sequence_file, "fasta"):
         for enz in range(len(multi)):
@@ -88,7 +88,9 @@ def commons():
         print r[0], r[1]
     
 if __name__ == '__main__':
-    RADdigest('E.coli.fasta')
+    fasta_file = sys.argv[1]
+    #RADdigest('E.coli.fasta')
+    RADdigest(fasta_file)
     #RADdigest1('E.coli.fasta')
     #RADdigest2('E.coli.fasta')
 
