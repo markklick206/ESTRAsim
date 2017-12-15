@@ -3,6 +3,10 @@
 Created on Thu Apr 21 20:20:45 2016
 
 @author: i7
+
+Usage: python ESTRAsim.py <reference genome fasta file> -e <enzyme name> | -s <cutsite sequence>
+Output: <file formatted like Radiqual "rad_tags.txt" with cutsite sequence in filename
+
 """
 
 from Bio import SeqIO
