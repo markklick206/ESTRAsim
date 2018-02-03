@@ -25,7 +25,9 @@ def RADdigest(sequence_file):
     "EcoRI" in rest_dict.keys()
     
     #Create a list of enzymes in your digest
-    multi = (BamHI, EcoRI, PstI)
+    multi = (BamHI, EcoRI)
+    
+    # PstI
     
     #Length of the fragments from the digest as boundaries
     frag_length = (49,100)
