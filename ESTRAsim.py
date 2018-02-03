@@ -30,10 +30,15 @@ def RADdigest(sequence_file):
     #Length of the fragments from the digest as boundaries
     frag_length = (49,100)
     
+    # read length to determine how far we are going to fetch from each cut site
+    read_length = 50
+    
     for record in SeqIO.parse(sequence_file, "fasta"):
         for enz in range(len(multi)):
             #print recognition site for the enzyme
             print(str(multi[enz]) + "'s recognition sequence: " + multi[enz].site)
+            
+            print (len(record.seq))
             
             #obtain the cut site coordinates for each enzyme
             cut_sites = multi[enz].search(record.seq)
@@ -53,11 +58,23 @@ def RADdigest(sequence_file):
             
             #get the coordinates as tuples to extract the sequences of fragments
             for site in range(1,len(cut_sites)):
-                frag = record.seq[cut_sites[site-1]:cut_sites[site]]
+                
+                if cut_sites[site]+read_length < len(record.seq):
+                    for_frag = record.seq[(cut_sites[site]+1):((cut_sites[site]+1)+read_length)]
+                    rad_tags.write(str(for_frag) + '\n')
+                    #anti_for_frag = for_frag.reverse_complement()
+                    #rad_tags.write(str(anti_for_frag) + '\n')
+                if cut_sites[site]-read_length > 0:
+                    rev_frag = record.seq[((cut_sites[site]+1)-read_length):(cut_sites[site]+1)]
+                    #rad_tags.write(str(rev_frag) + '\n')
+                    anti_rev_frag = rev_frag.reverse_complement()
+                    #anti_rev_frag = str(rev_frag)[::-1]
+                    rad_tags.write(str(anti_rev_frag) + '\n')
+                #frag = record.seq[cut_sites[site-1]:cut_sites[site]]
                 #print len(frag)
                 #if len(frag) == frag_length:
-                if len(frag) >= frag_length[0] and len(frag) <= frag_length[1]:
-                    rad_tags.write(str(frag) + '\n')
+                #if len(frag) >= frag_length[0] and len(frag) <= frag_length[1]:
+                    #rad_tags.write(str(frag) + '\n')
                 #print  "%s    %d    %s" % (record.id, cut_sites[site], multi[enz])
 
 def append_rad_tag_files(rad_tags, rad_tags1):
