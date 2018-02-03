@@ -95,7 +95,7 @@ if __name__ == '__main__':
     
     append_rad_tag_files("speciesB.reference.fa_chr0_BamHI_GGATCC.fasta","speciesB.reference.fa_chr1_BamHI_GGATCC.fasta")
     append_rad_tag_files("speciesB.reference.fa_chr0_EcoRI_GAATTC.fasta","speciesB.reference.fa_chr1_EcoRI_GAATTC.fasta")
-    append_rad_tag_files("speciesB.reference.fa_chr0_PstI_CTGCAG.fasta","speciesB.reference.fa_chr1_PstI_CTGCAG.fasta")
+    #append_rad_tag_files("speciesB.reference.fa_chr0_PstI_CTGCAG.fasta","speciesB.reference.fa_chr1_PstI_CTGCAG.fasta")
     
     
     
